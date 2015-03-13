@@ -1,0 +1,42 @@
+[
+  {
+    "memberId": 1,
+    "tallyId": 1,
+    "isAdmin": true
+  },
+  {
+    "memberId": 2,
+    "tallyId": 1,
+    "isAdmin": false
+  },
+  {
+    "memberId": 3,
+    "tallyId": 1,
+    "isAdmin": false
+  },
+  {
+    "memberId": 4,
+    "tallyId": 1,
+    "isAdmin": false
+  },
+  {
+    "memberId": 2,
+    "tallyId": 2,
+    "isAdmin": true
+  },
+  {
+    "memberId": 2,
+    "tallyId": 3,
+    "isAdmin": true
+  },
+  {
+    "memberId": 1,
+    "tallyId": 4,
+    "isAdmin": true
+  },
+  {
+    "memberId": 1,
+    "tallyId": 5,
+    "isAdmin": true
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "FooBarBatBaz",
+    "desc": "Foo is Admin, Bar, Bat and Baz join."
+  },
+  {
+    "id": 2,
+    "name": "Bar Second",
+    "desc": "bar02"
+  },
+  {
+    "id": 3,
+    "name": "Bar Third",
+    "desc": "bar03"
+  },
+  {
+    "id": 4,
+    "name": "Foo First",
+    "desc": "foo01"
+  },
+  {
+    "id": 5,
+    "name": "Foo Second",
+    "desc": "foo02"
+  }
+]

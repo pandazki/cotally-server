@@ -2,8 +2,8 @@
   "name": "cotally-server",
   "version": "1.0.0",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/pandazki/cotally-server.git"
+    "type": "",
+    "url": ""
   },
   "author": "Pandazki",
   "license": "MIT",
@@ -16,11 +16,13 @@
     "pretest": "jshint ."
   },
   "dependencies": {
+    "async": "^0.9.0",
     "compression": "^1.0.3",
     "errorhandler": "^1.1.1",
     "loopback": "^2.8.0",
     "loopback-boot": "^2.4.0",
     "loopback-datasource-juggler": "^2.7.0",
+    "q": "^1.2.0",
     "serve-favicon": "^2.0.1"
   },
   "optionalDependencies": {
@@ -28,10 +30,6 @@
   },
   "devDependencies": {
     "jshint": "^2.5.6"
-  },
-  "repository": {
-    "type": "",
-    "url": ""
   },
   "description": "cotally-server"
 }

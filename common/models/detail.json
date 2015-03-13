@@ -1,0 +1,66 @@
+{
+  "name": "Detail",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "string",
+      "required": false
+    },
+    "value": {
+      "type": "number",
+      "required": true
+    },
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "creatorId": {
+      "type": "number",
+      "required": true
+    },
+    "createTime": {
+      "type": "date"
+    },
+    "actorId": {
+      "type": "number"
+    },
+    "actTime": {
+      "type": "date"
+    },
+    "isSettled": {
+      "type": "boolean"
+    },
+    "tallyId": {
+      "type": "number",
+      "required": true
+    },
+    "target": {
+      "type": [
+        "number"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tally": {
+      "type": "belongsTo",
+      "model": "Tally",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": []
+}

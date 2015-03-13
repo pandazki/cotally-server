@@ -7,9 +7,6 @@
       "./models"
     ]
   },
-  "User": {
-    "dataSource": "db"
-  },
   "AccessToken": {
     "dataSource": "db",
     "public": false
@@ -25,5 +22,21 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Member": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Detail": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Participation": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Tally": {
+    "dataSource": "db",
+    "public": true
   }
 }

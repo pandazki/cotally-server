@@ -1,0 +1,29 @@
+{
+  "name": "Member",
+  "base": "User",
+  "strict": false,
+  "idInjection": false,
+  "properties": {
+    "nickName": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tallies": {
+      "type": "hasMany",
+      "model": "Tally",
+      "foreignKey": "memberId",
+      "through": "Participation"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": []
+}
