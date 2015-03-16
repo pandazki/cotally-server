@@ -19,10 +19,10 @@
   },
   "acls": [
     {
-      "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW"
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__get__tallies"
     }
   ],
   "methods": []
