@@ -3,7 +3,7 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 
-global.Promise = require('Q').Promise;
+global.Promise = require('q').Promise;
 
 // -- Add your pre-processing middleware here --
 app.use(loopback.context());
