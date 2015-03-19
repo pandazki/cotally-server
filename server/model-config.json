@@ -29,7 +29,7 @@
   },
   "Detail": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Participation": {
     "dataSource": "db",
