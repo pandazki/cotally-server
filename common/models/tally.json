@@ -53,20 +53,6 @@
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "tallyInfo"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "upsertDetail"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "calculate"

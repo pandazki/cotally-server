@@ -97,95 +97,52 @@ module.exports = function(Tally) {
       .done();
   };
 
-  Tally.remoteMethod(
-    'upsertDetail', {
-      description: 'Create or modify detail to tally.',
-      accepts: [{
-        arg: 'detailData',
-        type: 'Detail',
-        required: true,
-        http: {
-          source: 'body'
-        }
-      }, {
-        arg: 'tallyId',
-        type: 'number',
-        required: true
-      }],
-      returns: {
-        arg: 'detailId',
-        type: 'number'
-      },
-      http: {
-        verb: 'post',
-        path: '/:tallyId/upsertDetail'
-      }
-    }
-  );
-  Tally.upsertDetail = function(detailData, tallyId, cb) {
-
-    detailData.tallyId = tallyId;
-    //todo: check args
-
-    //add detail into tally
-    Tally.findById(tallyId)
-      .then(function(tally) {
-        if(!tally)
-          cb(new Error('The tally which id = ' + tallyId + ' not exist.'));
-        //return tally.details.create(detailData); // use the create function from tally.details will NOT return promise.
-        return Tally.app.models.Detail.updateOrCreate(detailData);
-      })
-      .then(function(detail) {
-        cb(null, detail.id);
-      });
-  };
-
-  Tally.remoteMethod(
-    'tallyInfo', {
-      description: 'Get tally info.',
-      accepts: [{
-        arg: 'tallyId',
-        type: 'number',
-        required: true
-      }],
-      returns: [{
-        arg: 'tally',
-        type: 'Tally'
-      }, {
-        arg: 'memberIds',
-        type: ['number'],
-        description: 'The member id of participation, the first one is the administrator\'s id.'
-      }],
-      http: {
-        verb: 'post',
-        path: '/:tallyId/info'
-      }
-    }
-  );
-  Tally.tallyInfo = function(id, cb) {
-    console.log(id);
-
-    //todo: check args
-    Q.all([
-      Tally.findById(id),
-      Tally.app.models.Participation.find({
-        where: {
-          tallyId: id
-        }
-      }, {})
-    ]).spread(function(tally, participations) {
-      console.log(tally);
-      console.log(participations);
-      var memberIds =
-        participations.sort(function(a, b) {
-          return a.isAdmin ? -1 : 1;
-        })
-        .map(function(p) {
-          return p.memberId;
-        });
-      cb(null, tally, memberIds);
-    }).done();
-  };
+  //Tally.remoteMethod(
+  //  'tallyInfo', {
+  //    description: 'Get tally info.',
+  //    accepts: [{
+  //      arg: 'tallyId',
+  //      type: 'number',
+  //      required: true
+  //    }],
+  //    returns: [{
+  //      arg: 'tally',
+  //      type: 'Tally'
+  //    }, {
+  //      arg: 'memberIds',
+  //      type: ['number'],
+  //      description: 'The member id of participation, the first one is the administrator\'s id.'
+  //    }],
+  //    http: {
+  //      verb: 'post',
+  //      path: '/:tallyId/info'
+  //    }
+  //  }
+  //);
+  //Tally.tallyInfo = function(id, cb) {
+  //  console.log(id);
+  //
+  //  //todo: check args
+  //  Q.all([
+  //    Tally.findById(id),
+  //    Tally.app.models.Participation.find({
+  //      where: {
+  //        tallyId: id
+  //      }
+  //    }, {})
+  //  ]).spread(function(tally, participations) {
+  //    console.log(tally);
+  //    console.log(participations);
+  //    var memberIds =
+  //      participations.sort(function(a, b) {
+  //        return a.isAdmin ? -1 : 1;
+  //      })
+  //      .map(function(p) {
+  //        return p.memberId;
+  //      });
+  //    cb(null, tally, memberIds);
+  //  }).done();
+  //};
 
   Tally.remoteMethod(
     'calculate', {
@@ -215,6 +172,9 @@ module.exports = function(Tally) {
           tallyId: tallyId,
           id: {
             inq: detailIds
+          },
+          actorId: {
+            neq: null
           }
         }
       }),
