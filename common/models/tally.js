@@ -181,13 +181,14 @@ module.exports = function(Tally) {
       Tally.app.models.Participation.find({
         where: {
           tallyId: tallyId
-        }
+        },
+        include: ['member']
       }, {})
     ]).spread(function (details, participations) {
-      var partnerIds = participations.map(function (p) {
-        return p.memberId;
+      var partners = participations.map(function (p) {
+        return p.member();
       });
-      cb(null, Tally._calculate(partnerIds, details));
+      cb(null, Tally._calculate(partners, details));
     });
   };
 
@@ -213,31 +214,42 @@ module.exports = function(Tally) {
     }
   );
   Tally.markDetailSettled = function (tallyId, detailIds, cb) {
+    //todo: check args
+    var ctx = loopback.getCurrentContext();
+    var currentUser = ctx && ctx.get('currentUser');
+    //check user
+    if (!currentUser) {
+      cb(new Error('No user with this access token was found.'))
+    }
     Tally.app.models.Detail.update({
       tallyId: tallyId,
       id: {
         inq: detailIds
       }
     }, {
-      isSettled: true
+      isSettled: true,
+      actorId: currentUser.id
     }).then(function (result) {
       return cb(null, detailIds);
     })
   };
 
 
-  Tally._calculate = function (partnerIds, details) {
+  Tally._calculate = function (partners, details) {
     if (!Array.isArray(details)) return null;
-    if (!Array.isArray(partnerIds)) return null;
+    if (!Array.isArray(partners)) return null;
 
     var results = {};
-    partnerIds.forEach(function (partnerId) {
-      results[partnerId] = {
-        memberId: partnerId,
+    partners.forEach(function (partner) {
+      results[partner.id] = {
+        member: partner,
         receivable: 0
       };
     });
-    var n = partnerIds.length;
+    partnerIds = partners.map(function (partner) {
+      return partner.id;
+    })
+    var n = partners.length;
 
     if (n == 1) { return results; }
 
