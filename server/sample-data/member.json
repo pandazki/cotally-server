@@ -18,5 +18,20 @@
     "email": "baz@bar.com",
     "username": "baz",
     "password": "123456"
+  },
+  {
+    "email": "onlrrr@bar.com",
+    "username": "总裁",
+    "password": "123456"
+  },
+  {
+    "email": "kyle@bar.com",
+    "username": "宝儿",
+    "password": "123456"
+  },
+  {
+    "email": "kiddo@bar.com",
+    "username": "马总",
+    "password": "123456"
   }
 ]
