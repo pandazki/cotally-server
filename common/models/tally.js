@@ -256,7 +256,7 @@ module.exports = function(Tally) {
     details.forEach(function (detail) {
       var target = Array.isArray(detail.target) && detail.target.length > 0 ? detail.target : partnerIds;
 
-      var v = (detail.value / target.length).toFixed(2);
+      var v = detail.value / target.length;
       var sum = 0; //deal with a tail difference
       target.forEach(function (memberId) {
         results[memberId].receivable -= v;
