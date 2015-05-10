@@ -97,53 +97,6 @@ module.exports = function(Tally) {
       .done();
   };
 
-  //Tally.remoteMethod(
-  //  'tallyInfo', {
-  //    description: 'Get tally info.',
-  //    accepts: [{
-  //      arg: 'tallyId',
-  //      type: 'number',
-  //      required: true
-  //    }],
-  //    returns: [{
-  //      arg: 'tally',
-  //      type: 'Tally'
-  //    }, {
-  //      arg: 'memberIds',
-  //      type: ['number'],
-  //      description: 'The member id of participation, the first one is the administrator\'s id.'
-  //    }],
-  //    http: {
-  //      verb: 'post',
-  //      path: '/:tallyId/info'
-  //    }
-  //  }
-  //);
-  //Tally.tallyInfo = function(id, cb) {
-  //  console.log(id);
-  //
-  //  //todo: check args
-  //  Q.all([
-  //    Tally.findById(id),
-  //    Tally.app.models.Participation.find({
-  //      where: {
-  //        tallyId: id
-  //      }
-  //    }, {})
-  //  ]).spread(function(tally, participations) {
-  //    console.log(tally);
-  //    console.log(participations);
-  //    var memberIds =
-  //      participations.sort(function(a, b) {
-  //        return a.isAdmin ? -1 : 1;
-  //      })
-  //      .map(function(p) {
-  //        return p.memberId;
-  //      });
-  //    cb(null, tally, memberIds);
-  //  }).done();
-  //};
-
   Tally.remoteMethod(
     'calculate', {
       description: 'Calculate the specified details.',
@@ -246,9 +199,9 @@ module.exports = function(Tally) {
         receivable: 0
       };
     });
-    partnerIds = partners.map(function (partner) {
+    var partnerIds = partners.map(function (partner) {
       return partner.id;
-    })
+    });
     var n = partners.length;
 
     if (n == 1) { return results; }
